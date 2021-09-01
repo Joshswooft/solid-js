@@ -1,11 +1,10 @@
-## Usage
+# Solid JS
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.js.org/) via `pnpm up -Lri`.
-
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+Messing around with a new JS framework.
+## Setup
 
 ```bash
-$ npm install # or pnpm install or yarn install
+$ yarn install
 ```
 ### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
 
