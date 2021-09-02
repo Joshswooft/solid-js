@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Component, createSignal, For } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { styled, css } from 'solid-styled-components';
+import { BtnClass } from './common/Button';
 import { ProgressBarContainer } from './ProgressBar';
 interface FileUploaderProps {
     accept: string;
@@ -31,20 +32,6 @@ const FileUploaderDropArea = styled("div")`
         margin-top: 2em;
     }
 `
-
-const BtnClass = css`
-    display: inline-block;
-    padding: 10px;
-    background: #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-
-    &:hover {
-        background: #dddddd;
-    }
-`
-
 interface FileProgress {
     file:  File;
     progress: number;
@@ -63,13 +50,8 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
         e.stopPropagation();
     }
 
-    const previewFile = (file) => {
-
-    }
-
     const uploadFile = async (file: File, index: number) => {
         console.log("upload this file: ", file)
-        // TODO: uploads the file
         let formData = new FormData();
         formData.append(file.name, file)
         const response = await axios.post(props.url, formData, {
@@ -79,7 +61,6 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
             onUploadProgress: function( progressEvent: ProgressEvent ) {
                 console.log("progress event: ", progressEvent);
               this.uploadPercentage = Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 );
-              console.log('upload progress:', this.uploadPercentage + "%");
             //   info on how to update state here: https://www.solidjs.com/docs/latest/api#createstore
               setState( 'files', index, 'progress', this.uploadPercentage )
             }
@@ -95,7 +76,6 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
             fp[i] = { file: f, progress: 0 } as FileProgress;
             i++;
         }
-        console.log("fp: ", fp)
         setState({ files: fp });
         ([...files]).forEach(uploadFile);
     }
@@ -116,7 +96,6 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
     }
 
     const onFileDialogChange = (e) => {
-        console.log("files: ", e.target.files)
         handleFiles(e.target.files);
     }
 
