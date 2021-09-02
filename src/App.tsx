@@ -1,7 +1,7 @@
 import type { Component } from "solid-js";
 
 import styles from "./App.module.css";
-import FileUploader from "./FileUploader";
+import FileUploader from "./FileUploader/FileUploader";
 
 const App: Component = () => {
   return (

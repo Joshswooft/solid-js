@@ -278,7 +278,7 @@ axios@*, axios@^0.21.1:
   dependencies:
     follow-redirects "^1.10.0"
 
-babel-plugin-jsx-dom-expressions@^0.29.15:
+babel-plugin-jsx-dom-expressions@^0.29.15, babel-plugin-jsx-dom-expressions@^0.29.9:
   version "0.29.15"
   resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.29.15.tgz#54bcc64771a8107162e47f4d731c34746afb2852"
   integrity sha512-chCcxW66Y0HirwRQT9CvZ7iwqJNxwerz4WAAHwsKSGwCjJ8z1lLOe/5AynkTglZYLkJam091bUOcygKh05gWig==
@@ -293,6 +293,13 @@ babel-preset-solid@^1.1.1:
   integrity sha512-wBlITKgfSBMwHsp+VNF8cTyKGNhUheV5gckLUIds2Po/XAkGjK4jcdkPS80ZgLHDKPPE5qbSFyaGH4FwNky3eQ==
   dependencies:
     babel-plugin-jsx-dom-expressions "^0.29.15"
+
+babel-preset-solid@~1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-1.0.6.tgz#a943f5af4cdfa1033286f0c9bff7d78fd15323f9"
+  integrity sha512-D+VLpF8WCif5IQmojypImyhlarxcjCD/lBOd4DBEDStXGMGNdlFBgsuVkKFiJ1yQA2KsHLljpbqrv9GsZYrZ3w==
+  dependencies:
+    babel-plugin-jsx-dom-expressions "^0.29.9"
 
 browserslist@^4.16.6:
   version "4.16.8"
@@ -347,6 +354,11 @@ csstype@^2.6.2:
   version "2.6.17"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.17.tgz#4cf30eb87e1d1a005d8b6510f95292413f6a1c0e"
   integrity sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==
+
+dayjs@^1.10.6:
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
+  integrity sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==
 
 debug@^4.1.0:
   version "4.3.2"
@@ -518,10 +530,23 @@ solid-js@^1.1.1, solid-js@^1.1.2:
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.1.2.tgz#676e5cdcee7bf775978e20fa6d82e5e603f519d9"
   integrity sha512-Zfns3Zu5mtqzd+0nX1qHpHl0fesn6IJgI/3J7qgkCnF33JH8B7XoFCK49DprMDxdu1lszs4DJb2oi807s61rww==
 
+solid-js@~1.0.0:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.0.7.tgz#ad8279d1b50cc403eab072658e0686b22aa5602e"
+  integrity sha512-2jHCXLwp/B7P4kh5tl0ospRaC2F++BU0uWwtfgK/8Zc/MROOyCmmkjHpLAQC2u2NWYVGnIclDIJ2FGDXJ0wcYg==
+
 solid-refresh@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/solid-refresh/-/solid-refresh-0.2.2.tgz#c4200cab2fb7e55dc6b2ec5df510b9428646ff59"
   integrity sha512-oQN3pUJ8fBd4ldMxZVqK7S4PGzAn1yx1B5bRRfANoxoqmHyY2QLfzrOzXsYnAkhh272K+W24oKgFWlmdUZ6HtQ==
+
+solid-simple-table@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/solid-simple-table/-/solid-simple-table-1.0.0.tgz#3f895c9b11c9de813c273c5fce3228df92f64bf6"
+  integrity sha512-qZVZH8QwWROmvLVPy0d3ZkMA1I0x/ko4cDXeI0mfxVAWQavxgMqMmRjuWs3Kkvt98XLeZvNDLXK1dDiQK03/5g==
+  dependencies:
+    babel-preset-solid "~1.0.0"
+    solid-js "~1.0.0"
 
 solid-styled-components@^0.27.2:
   version "0.27.2"

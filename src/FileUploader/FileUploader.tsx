@@ -1,9 +1,11 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import { Component, createSignal, For } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { styled, css } from 'solid-styled-components';
-import { BtnClass } from './common/Button';
-import { ProgressBarContainer } from './ProgressBar';
+import { BtnClass, ProgressBarContainer } from '../common';
+import { FileProgress } from './types';
+
 interface FileUploaderProps {
     accept: string;
     description: string;
@@ -32,13 +34,9 @@ const FileUploaderDropArea = styled("div")`
         margin-top: 2em;
     }
 `
-interface FileProgress {
-    file:  File;
-    progress: number;
-}
 
 const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) => {
-
+    const timeFormat = 'DD-MM-YYYY HH:mm:ss:SSS'
     const [shouldHighlight, setShouldHighlight] = createSignal(false);
     const initialFiles: Array<FileProgress> = [];
     // adding new indexes doesn't trigger updates so recommended practice is to use as key in obj
@@ -54,18 +52,28 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
         console.log("upload this file: ", file)
         let formData = new FormData();
         formData.append(file.name, file)
-        const response = await axios.post(props.url, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            onUploadProgress: function( progressEvent: ProgressEvent ) {
-                console.log("progress event: ", progressEvent);
-              this.uploadPercentage = Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 );
-            //   info on how to update state here: https://www.solidjs.com/docs/latest/api#createstore
-              setState( 'files', index, 'progress', this.uploadPercentage )
-            }
-        })
-        console.log(response);
+        try {
+            const response = await axios.post(props.url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                onUploadProgress: function( progressEvent: ProgressEvent ) {
+                    console.log("progress event: ", progressEvent);
+                  this.uploadPercentage = Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 );
+                //   info on how to update state here: https://www.solidjs.com/docs/latest/api#createstore
+                  setState( 'files', index, 'progress', this.uploadPercentage )
+                }
+            })
+            console.log("resp: ", response);
+            setState('files', index, { endTime : dayjs().format(timeFormat), status: response.status == 200 ? "Completed" : "Error" } )
+        }
+        catch (err) {
+            console.log(err)
+            setState('files', index, { endTime : dayjs().format(timeFormat), status: "Error" } )
+        }
+        finally {
+            console.log(state.files)
+        }
     }
 
     const handleFiles = (files: FileList) => {
@@ -73,9 +81,10 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
         let fp: Array<FileProgress> = [];
         let i = 0;
         for (const f of files) {
-            fp[i] = { file: f, progress: 0 } as FileProgress;
+            fp[i] = { file: f, progress: 0, startTime: dayjs().format(timeFormat), status: "Pending" } as FileProgress;
             i++;
         }
+        console.log(fp);
         setState({ files: fp });
         ([...files]).forEach(uploadFile);
     }
@@ -108,7 +117,7 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
                 <For each={state.files}>
                     {
                         (fp: FileProgress) => (
-                            <ProgressBarContainer name={fp.file.name} percentage={fp.progress}/>
+                            <ProgressBarContainer name={fp.file.name} percentage={fp.progress} status={fp.status}/>
                         )
                     }
                 </For>
