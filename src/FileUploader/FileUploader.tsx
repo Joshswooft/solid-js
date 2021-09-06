@@ -54,7 +54,7 @@ const FileUploader: Component<FileUploaderProps> = (
 
   const uploadFile = async (file: File, index: number) => {
     console.log("upload this file: ", file);
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append(file.name, file);
     try {
       const response = await axios.post(props.url, formData, {
@@ -88,7 +88,7 @@ const FileUploader: Component<FileUploaderProps> = (
 
   const handleFiles = (files: FileList) => {
     console.log("files: ", files);
-    let fp: Array<FileProgress> = [];
+    const fp: Array<FileProgress> = [];
     let i = 0;
     for (const f of files) {
       fp[i] = {
