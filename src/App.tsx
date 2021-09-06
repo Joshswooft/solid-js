@@ -12,7 +12,12 @@ const App: Component = () => {
         <header class={styles.header}>
           <h1>Pharmacist Importer</h1>
         </header>
-        <FileUploader url="http://localhost:80" accept=".xls" description="Drag and drop your excel files here!" label="Select some files"/>
+        <FileUploader
+          url="http://localhost:80"
+          accept=".xls"
+          description="Drag and drop your excel files here!"
+          label="Select some files"
+        />
       </div>
     </ThemeProvider>
   );

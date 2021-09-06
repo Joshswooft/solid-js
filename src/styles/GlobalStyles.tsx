@@ -1,7 +1,7 @@
-import { createGlobalStyles } from "solid-styled-components"
+import { createGlobalStyles } from "solid-styled-components";
 
 export const GlobalStyles = () => {
-    const Styles = createGlobalStyles`
-    `
-    return <Styles />
-}
+  const Styles = createGlobalStyles`
+    `;
+  return <Styles />;
+};

@@ -1,11 +1,15 @@
 # Solid JS
 
 Messing around with a new JS framework.
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 ## Setup
 
 ```bash
 $ yarn install
 ```
+
 ### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
 
 ## Available Scripts
