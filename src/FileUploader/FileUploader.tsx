@@ -2,8 +2,9 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { Component, createSignal, For } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { styled, css } from 'solid-styled-components';
-import { BtnClass, ProgressBarContainer } from '../common';
+import { styled } from 'solid-styled-components';
+import { BtnClass } from '../common';
+import { UploadedTable } from './UploadedTable';
 import { FileProgress } from './types';
 
 interface FileUploaderProps {
@@ -24,13 +25,13 @@ const FileUploaderDropArea = styled("div")`
     width: 80%;
     margin: 100px auto;
     padding: 20px;
-    border-color: ${(props: FileDropAreaCSSProps) => props.highlight ? 'purple' : '#ccc'};
+    border-color: ${(props: FileDropAreaCSSProps) => props.highlight ? '#84DE02' : '#ccc'};
 
     #fileuploader {
         display: none;
     }
 
-    .upload-area {
+    #upload-area {
         margin-top: 2em;
     }
 `
@@ -114,13 +115,7 @@ const FileUploader: Component<FileUploaderProps> = (props: FileUploaderProps) =>
             <input type="file" id="fileuploader" multiple accept={props.accept} onChange={onFileDialogChange} />
             <label for="fileuploader" class={BtnClass}>{props.label}</label>
             <div id="upload-area">
-                <For each={state.files}>
-                    {
-                        (fp: FileProgress) => (
-                            <ProgressBarContainer name={fp.file.name} percentage={fp.progress} status={fp.status}/>
-                        )
-                    }
-                </For>
+                <UploadedTable files={state.files} />
             </div>
         </FileUploaderDropArea>
     )

@@ -1,13 +1,15 @@
 import { Component } from "solid-js"
 import { FileProgress } from "./types"
 import { For } from 'solid-js';
-import { ProgressBarContainer } from '../common';
+import { UploadedTableItem } from './UploadedTableItem';
+import { styled } from "solid-styled-components";
 
-interface ImportedTableProps {
+interface UploadedTableProps {
     files: FileProgress[];
 }
 
-export const ImportedTable: Component<ImportedTableProps> = (props: ImportedTableProps) => {
+
+export const UploadedTable: Component<UploadedTableProps> = (props: UploadedTableProps) => {
 
     const columns = [
         {
@@ -29,12 +31,14 @@ export const ImportedTable: Component<ImportedTableProps> = (props: ImportedTabl
     ] 
 
     return (
-        <For each={props.files}>
-            {
-                (fp: FileProgress) => (
-                    <ProgressBarContainer name={fp.file.name} percentage={fp.progress}/>
-                )
-            }
-        </For>
+        <div>
+            <For each={props.files}>
+                {
+                    (fp: FileProgress) => (
+                        <UploadedTableItem {...fp} />
+                    )
+                }
+            </For>
+        </div>
     )
 }

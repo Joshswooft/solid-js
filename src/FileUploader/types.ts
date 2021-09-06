@@ -7,3 +7,7 @@ export interface FileProgress {
     endTime: string;
     status: Status;
 }
+
+export interface FileStatusProps {
+    status: Status;
+}
