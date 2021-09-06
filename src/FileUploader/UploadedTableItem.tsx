@@ -2,7 +2,7 @@ import { Component } from "solid-js";
 import { styled } from "solid-styled-components";
 import { ProgressBar } from "../common";
 import { DisplayFileSize } from "./display-file-size";
-import { FileProgress, FileStatusProps, Status } from "./types";
+import { FileProgress } from "./types";
 import Icon from "../assets/icons/xls-icon.svg";
 import Badge from "../common/Badge";
 
@@ -12,10 +12,6 @@ const TableRow = styled("tr")`
   display: inline-flex;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 7px 0 0 rgb(70 70 70 / 1%), 0 6px 0 0 rgb(65 65 65 / 1%),
-    0 5px 0 0 rgb(60 60 60 / 1%), 0 4px 0 0 rgb(55 55 55 / 1%),
-    0 3px 0 0 rgb(50 50 50 / 1%), 0 2px 0 0 rgb(50 50 50 / 1%),
-    0 1px 0 0 rgb(45 45 45 / 1%);
 
   td {
     font-size: 0.85rem;
@@ -24,6 +20,16 @@ const TableRow = styled("tr")`
       color: ${(p) => p.theme.colors.gray};
       text-transform: uppercase;
       font-size: 0.8rem;
+    }
+
+    &.file-name {
+      flex-basis: 180px;
+    }
+
+    img {
+      background-color: "#fafafa";
+      border-bottom: 1px solid #e7e7e7;
+      border-radius: 4px;
     }
   }
 `;
@@ -37,7 +43,7 @@ export const UploadedTableItem: Component<FileProgress> = (
         <td>
           <img src={Icon} />
         </td>
-        <td>{props.file.name}</td>
+        <td class="file-name">{props.file.name}</td>
         <td>
           <Badge status={props.status}>{props.status}</Badge>
         </td>

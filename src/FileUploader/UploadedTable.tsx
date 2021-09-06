@@ -8,6 +8,13 @@ interface UploadedTableProps {
   files: FileProgress[];
 }
 
+const StyledTable = styled("table")`
+  box-shadow: 3px 6px 7px 8px rgba(70, 70, 70, 0.03);
+  -webkit-box-shadow: 3px 6px 7px 8px rgba(70, 70, 70, 0.03);
+  -moz-box-shadow: 3px 6px 7px 8px rgba(70, 70, 70, 0.03);
+  width: 100%;
+`;
+
 export const UploadedTable: Component<UploadedTableProps> = (
   props: UploadedTableProps
 ) => {
@@ -31,10 +38,10 @@ export const UploadedTable: Component<UploadedTableProps> = (
   ];
 
   return (
-    <div>
+    <StyledTable>
       <For each={props.files}>
         {(fp: FileProgress) => <UploadedTableItem {...fp} />}
       </For>
-    </div>
+    </StyledTable>
   );
 };
