@@ -1,3 +1,10 @@
+# 1.0.0 (2022-03-30)
+
+
+### Features
+
+* test semantic release ([b25614d](https://github.com/Joshswooft/solid-js/commit/b25614de7e5a67455b5ac6595566cf482aa0afd5))
+
 # 1.0.0 (2022-01-21)
 
 
